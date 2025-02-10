@@ -11,7 +11,7 @@ export default async ({ req, res, log, error }) => {
   try {
     const result = await squareClient.catalog.list();
 
-    log.info(result);
+    log(result);
 
     return res.json({
       success: true,
