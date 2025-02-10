@@ -11,11 +11,14 @@ export default async ({ req, res, log, error }) => {
   try {
     const result = await squareClient.catalog.list();
 
+    log.info(result);
+
     return res.json({
       success: true,
       data: result.data
     })
   } catch (err) {
+    error(err);
     if (err instanceof Error) {
       return res.json({
         success: false,
