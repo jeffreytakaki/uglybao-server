@@ -13,9 +13,13 @@ export default async ({ req, res, log, error }) => {
 
     log(result);
 
+    const dataWithStrings = JSON.parse(JSON.stringify(result.data, (key, value) =>
+      typeof value === 'bigint' ? value.toString() : value
+    ));
+
     return res.json({
       success: true,
-      data: result.data
+      data: dataWithStrings
     })
   } catch (err) {
     error(err);
